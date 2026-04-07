@@ -41,9 +41,12 @@ Example: v1.2.3.cyclonedx.json
 ```
 ------------------------------------------------------------------------
 
-## How to Use (Consumer Repos)
+## Recommended Usage (Policy)
 
-On Release Published:
+> ⚠️ This workflow is required to run on **release publish** as part of our SBOM policy.
+
+All repositories must configure the workflow as follows:
+
 ```yaml
 name: syft-sbom-ci
 
@@ -53,47 +56,55 @@ on:
 
 jobs:
   sbom:
-    uses: your-org/your-central-repo/.github/workflows/syft-release-sbom.yml@main
+    uses: saml-test-integrations/ssdlc-actions/.github/workflows/syft-release-sbom.yml@main
     with:
       sbom_name: ${{ github.event.release.tag_name }}
 ```
 ------------------------------------------------------------------------
+This ensures:
+```
+- SBOMs are generated for every release
+- SBOM naming aligns with release versions 
+- Compatibility with future Dependency-Track ingestion
+```
+------------------------------------------------------------------------
 
-## Run Manually
+---
+# 🧪 Optional (Testing / Troubleshooting)
 
-You can trigger this workflow manually for testing or troubleshooting:
+⚠️ These configurations are for testing only and should not replace the required release-based workflow.
+
+```markdown
+## Optional: Manual or Branch Testing
+
+For testing or troubleshooting, you may temporarily run the workflow manually or on a branch.
+
+### Manual trigger
 
 ```yaml
-name: syft-sbom-ci
-
 on:
   workflow_dispatch:
+```
+Branch-based testing
 
+```
+on:
+  push:
+    branches:
+      - main
+```
+Example:
+```
+name: syft-sbom-ci
+on:
+  workflow_dispatch:
 jobs:
   sbom:
     uses: your-org/your-central-repo/.github/workflows/syft-release-sbom.yml@main
     with:
       sbom_name: manual
 ```
------------------------------------------------------------------------------
-
-## Run on Specific Branch
-
-You can configure the workflow to run on pushes to a specific branch:
-
-```yaml
-name: syft-sbom-ci
-
-on:
-  push:
-    branches:
-      - main
-jobs:
-  sbom:
-    uses: your-org/your-central-repo/.github/workflows/syft-release-sbom.yml@main
-    with:
-      sbom_name: ${{ github.ref_name }}
-```
+------------------------------------------------------------------------
 ## Input Parameters
 
   | Name      | Required | Description                                      |
