@@ -87,20 +87,21 @@ on:
 ```
 Branch-based testing
 
-```
+```yaml
 on:
   push:
     branches:
       - main
 ```
 Example:
-```
+
+```yaml
 name: syft-sbom-ci
 on:
   workflow_dispatch:
 jobs:
   sbom:
-    uses: your-org/your-central-repo/.github/workflows/syft-release-sbom.yml@main
+    uses: saml-test-integrations/ssdlc-actions/.github/workflows/syft-release-sbom.yml@main
     with:
       sbom_name: manual
 ```
@@ -121,8 +122,8 @@ anchore/sbom-action@v0.24.0
 ```
 ------------------------------------------------------------------------
 This ensures:
-Stability across all repositories
-No unexpected breaking changes
+-   Stability across all repositories
+-   No unexpected breaking changes
 
 ## Summary
 This workflow provides centralized SBOM generation with minimal setup
