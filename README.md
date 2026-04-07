@@ -43,7 +43,7 @@ Example: v1.2.3.cyclonedx.json
 
 ## How to Use (Consumer Repos)
 
-Create a wrapper workflow in your repository:
+On Release Published:
 ```yaml
 name: syft-sbom-ci
 
@@ -58,11 +58,49 @@ jobs:
       sbom_name: ${{ github.event.release.tag_name }}
 ```
 ------------------------------------------------------------------------
+
+## Run Manually
+
+You can trigger this workflow manually for testing or troubleshooting:
+
+```yaml
+name: syft-sbom-ci
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sbom:
+    uses: your-org/your-central-repo/.github/workflows/syft-release-sbom.yml@main
+    with:
+      sbom_name: manual
+```
+-----------------------------------------------------------------------------
+
+## Run on Specific Branch
+
+You can configure the workflow to run on pushes to a specific branch:
+
+```yaml
+name: syft-sbom-ci
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  sbom:
+    uses: your-org/your-central-repo/.github/workflows/syft-release-sbom.yml@main
+    with:
+      sbom_name: ${{ github.ref_name }}
+```
 ## Input Parameters
 
   | Name      | Required | Description                                      |
 |-----------|----------|--------------------------------------------------|
 | sbom_name | Yes      | Name of the generated SBOM file (release tag)    |
+
+
 ## Versioning Strategy
 
 This workflow uses a pinned version of the SBOM action:
@@ -76,6 +114,5 @@ Stability across all repositories
 No unexpected breaking changes
 
 ## Summary
-
 This workflow provides centralized SBOM generation with minimal setup
 and future-ready supply chain visibility.
