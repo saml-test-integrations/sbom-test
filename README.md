@@ -5,24 +5,24 @@ generating a CycloneDX Software Bill of Materials (SBOM) using Anchore
 Syft.
 
 The workflow is designed to be:
-``` 
+
 - Reusable across repositories
 - Centrally managed
 - Lightweight for consumers 
-```
+
 ------------------------------------------------------------------------
 
 ## What This Workflow Does
 
 When invoked, this workflow:
-```
+
 1.  Checks out the repository
 2.  Generates an SBOM using Syft
 3.  Outputs the SBOM in CycloneDX JSON format
 4.  Uploads the SBOM:
     -   As a GitHub Actions artifact
     -   As a GitHub release asset (when triggered via release)
-```
+
 ------------------------------------------------------------------------
 
 ## Output
@@ -62,11 +62,11 @@ jobs:
 ```
 ------------------------------------------------------------------------
 This ensures:
-```
+
 - SBOMs are generated for every release
 - SBOM naming aligns with release versions 
 - Compatibility with future Dependency-Track ingestion
-```
+
 ------------------------------------------------------------------------
 
 ---
