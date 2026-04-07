@@ -118,7 +118,6 @@ jobs:
 This workflow uses a pinned version of the SBOM action:
 ```
 anchore/sbom-action@v0.24.0
-
 ```
 ------------------------------------------------------------------------
 This ensures:
