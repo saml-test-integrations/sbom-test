@@ -20,3 +20,5 @@ jobs:
         with:
           format: cyclonedx-json
           artifact-name: ${{ inputs.sbom_name }}.cyclonedx.json
+          upload-release-assets: true
+          dependency-snapshot: true
