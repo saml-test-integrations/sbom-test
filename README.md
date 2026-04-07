@@ -4,10 +4,12 @@ This Section provides a reusable GitHub Actions workflow for
 generating a CycloneDX Software Bill of Materials (SBOM) using Anchore
 Syft.
 
-The workflow is designed to be: 
+The workflow is designed to be:
+``` 
 - Reusable across repositories
 - Centrally managed
 - Lightweight for consumers 
+```
 ------------------------------------------------------------------------
 
 ## What This Workflow Does
